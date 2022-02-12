@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Game</title>
+  </head>
+  <body>
+    <div class="root">
+      <header class="header common-width">
+        <h1 class="header__title">Крестики-нолики</h1>
+      </header>
+      <main class="main common-width">
+        <section class="game">
+          <ul class="game__field">
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+            <li class="game__field-cell"></li>
+          </ul>
+          <h2 class="game__title">${player} выиграл</h2>
+          <p class="game__text">Всего ходов: ${steps}</p>
+        </section>
+      </main>
+      <footer class="footer common-width">
+        <p class="footer__copyright">
+          <span class="footer__copyright-sign">©</span>
+          <span class="footer__copyright-year">2022</span>
+          <a
+            href="https://github.com/ProjectOnGitHub"
+            class="footer__link link"
+            target="_blank"
+            >github</a
+          >
+        </p>
+        <a
+          href="https://rs.school/js-stage0/"
+          class="footer__link link"
+          target="_blank"
+          ><img
+            src="./assets/svg/rs_school_js.svg"
+            alt="Logo"
+            class="footer__logo"
+        /></a>
+      </footer>
+    </div>
+    <script src="./scripts.js"></script>
+  </body>
+</html>

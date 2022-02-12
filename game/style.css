@@ -1,0 +1,126 @@
+@import url("./assets/normalize.css");
+@import url("./assets/fonts.css");
+
+.root {
+  display: grid;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+
+  color: var(--color-dark);
+  background-color: var(--color-light);
+
+  font: normal 20px/1.5 "Inter", Arial, sans-serif;
+  --color-gray: #c2c2c2;
+  --color-dark: #323131;
+  --color-light: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  justify-items: center;
+  --main-width: 940px;
+}
+
+.common-width {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--main-width);
+  padding: 0 20px;
+}
+
+.link {
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+
+  color: var(--color-dark);
+}
+
+.header {
+  justify-items: center;
+  align-items: center;
+  height: 60px;
+}
+
+.header__title {
+  font-size: 30px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.main {
+  height: calc(100vh - 120px);
+  padding-top: 50px;
+}
+
+.game {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: repeat(3, min-content);
+  gap: 15px;
+}
+
+.game__field {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  grid-template-rows: repeat(3, 70px);
+  gap: 5px;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.game__field-cell {
+  position: relative;
+  border: 1px solid var(--color-gray);
+  border-radius: 3px;
+}
+
+.game__title {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.game__text {
+  font-size: 20px;
+  padding: 0;
+}
+
+.footer {
+  align-items: center;
+  justify-content: space-between;
+
+  height: 60px;
+
+  grid-template-columns: repeat(2, max-content);
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    font-size: 14px;
+  }
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+
+  color: var(--color-dark);
+
+  gap: 20px;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+.footer__logo {
+  width: 80px;
+  height: auto;
+}
