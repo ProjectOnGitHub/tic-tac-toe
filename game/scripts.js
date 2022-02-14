@@ -24,21 +24,12 @@ const choiceCell = () => {
 };
 
 const addCross = (e) => {
-  if (e.target.classList.contains('game__field-cell')) {
+  if ((e.target.classList.contains('game__field-cell')) && (step % 2 === 0)) {
     e.target.classList.add('cross');
     e.target.classList.remove('empty');
+    countStep();
+    choiceCell();
   }
-  countStep();
-  choiceCell();
 };
-
-// const addZero = (e) => {
-//   if (e.target.classList.contains('game__field-cell')) {
-//     e.target.classList.add('zero');
-//     e.target.classList.add('disabled');
-//
-//   }
-// countStep();
-// };
 
 gameField.addEventListener('click', addCross);
