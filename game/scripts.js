@@ -10,12 +10,12 @@ const win = [
   [2, 4, 6],
 ];
 
-let step = 0;
+let steps = 0;
 
 const crossResults = [];
 const zeroResults = [];
 
-const countStep = () => ++step;
+const countsteps = () => ++steps;
 
 const addResult = (arr, cell) => {
   const cells = document.querySelectorAll('.game__field-cell');
@@ -29,15 +29,15 @@ const choiceCell = () => {
   emptyCells[randomCell].classList.add('zero');
   emptyCells[randomCell].classList.remove('empty');
   addResult(zeroResults, emptyCells[randomCell]);
-  countStep();
+  countsteps();
 };
 
 const addCross = (e) => {
-  if ((e.target.classList.contains('game__field-cell')) && (step % 2 === 0)) {
+  if ((e.target.classList.contains('game__field-cell')) && (steps % 2 === 0)) {
     e.target.classList.add('cross');
     e.target.classList.remove('empty');
     addResult(crossResults, e.target);
-    countStep();
+    countsteps();
     choiceCell();
   }
 };
