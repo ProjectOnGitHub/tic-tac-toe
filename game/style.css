@@ -57,10 +57,11 @@
 
 .game {
   width: 100%;
-  display: grid;
+  display: none;
   justify-items: center;
   grid-template-rows: repeat(3, min-content) 1fr;
   gap: 15px;
+  opacity: 0;
 }
 
 .game__field {
@@ -96,6 +97,7 @@
 }
 
 .game__button-reset {
+  cursor: pointer;
   font-size: 18px;
   padding: 0;
   margin: 0;
@@ -184,10 +186,23 @@
   opacity: 0;
 }
 
+.start {
+  animation: displayImage 1s forwards;
+  display: grid;
+}
+
+.game__button-start {
+  font-size: 50px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
 .zero.win {
   background-color: rgba(255, 0, 0, 0.3);
   animation: displayImage 1s forwards;
-
   opacity: 0;
 }
 

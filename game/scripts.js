@@ -1,5 +1,6 @@
 const buttonReset = document.querySelector('.game__button-reset');
 const gameField = document.querySelector('.game__field');
+const buttonStart = document.querySelector('.game__button-start');
 const win = [
   [0, 1, 2],
   [3, 4, 5],
@@ -15,6 +16,11 @@ let steps = 0;
 let endGame = false;
 
 const countsteps = () => ++steps;
+
+const startGame = () => {
+  buttonStart.remove();
+  document.querySelector('.game').classList.add('start');
+};
 
 const printResult = (selector) => {
   const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
@@ -79,4 +85,5 @@ const resetGame = () => {
 };
 
 buttonReset.addEventListener('click', resetGame);
+buttonStart.addEventListener('click', startGame);
 gameField.addEventListener('click', addCross);
