@@ -23,6 +23,8 @@ const startGame = () => {
 };
 
 const printResult = (selector) => {
+  const emptyCells = document.querySelectorAll('.empty');
+  emptyCells.forEach((item) => item.classList.remove('empty'));
   const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
   document.querySelector('.game__title').textContent = winner;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
