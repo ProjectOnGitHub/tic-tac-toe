@@ -1,5 +1,5 @@
-const gameField = document.querySelector('.game__field');
 const buttonReset = document.querySelector('.game__button-reset');
+const gameField = document.querySelector('.game__field');
 const win = [
   [0, 1, 2],
   [3, 4, 5],
@@ -20,12 +20,11 @@ const printResult = (selector) => {
   const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
   document.querySelector('.game__title').textContent = winner;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
-  gameField.removeEventListener('click', addCross);
 };
 
 const checkWinner = (selector) => {
-  const cells = document.querySelectorAll('.game__field-cell');
-  if (steps > 0) {
+  if (steps > 4) {
+    const cells = document.querySelectorAll('.game__field-cell');
     win.map((item) => {
       if (cells[item[0]].classList.contains(selector)
         && cells[item[1]].classList.contains(selector)
@@ -34,6 +33,10 @@ const checkWinner = (selector) => {
         printResult(selector);
       }
     });
+  }
+  if ((steps === 9) && (!endGame)) {
+    document.querySelector('.game__title').textContent = 'Ничья';
+    document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
   }
 };
 
@@ -62,7 +65,6 @@ const resetGame = () => {
     item.classList.remove('cross');
     item.classList.remove('zero');
     item.classList.add('empty');
-    gameField.addEventListener('click', addCross);
     document.querySelector('.game__title').textContent = '';
     document.querySelector('.game__text').textContent = '';
     steps = 0;
@@ -70,5 +72,5 @@ const resetGame = () => {
   });
 };
 
-gameField.addEventListener('click', addCross);
 buttonReset.addEventListener('click', resetGame);
+gameField.addEventListener('click', addCross);
