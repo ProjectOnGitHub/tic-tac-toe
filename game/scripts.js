@@ -12,16 +12,7 @@ const win = [
 
 let steps = 0;
 
-const crossResult = [];
-const zeroResult = [];
-
 const countsteps = () => ++steps;
-
-const addResult = (arr, cell) => {
-  const cells = document.querySelectorAll('.game__field-cell');
-  const index = Array.from(cells).indexOf(cell);
-  arr.push(index);
-};
 
 const printResult = (selector) => {
   const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
@@ -49,7 +40,6 @@ const choiceCell = () => {
     const randomCell = Math.floor(Math.random() * emptyCells.length);
     emptyCells[randomCell].classList.add('zero');
     emptyCells[randomCell].classList.remove('empty');
-    addResult(zeroResult, emptyCells[randomCell]);
     countsteps();
     checkWinner('zero');
   }
@@ -58,13 +48,10 @@ const addCross = (e) => {
   if ((e.target.classList.contains('game__field-cell')) && (steps % 2 === 0)) {
     e.target.classList.add('cross');
     e.target.classList.remove('empty');
-    addResult(crossResult, e.target);
     countsteps();
     choiceCell();
     checkWinner('cross');
   }
 };
-
-console.log(checkWinner());
 
 gameField.addEventListener('click', addCross);
