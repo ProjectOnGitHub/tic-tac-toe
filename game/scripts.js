@@ -11,6 +11,7 @@ const win = [
 ];
 
 let steps = 0;
+let endGame = false;
 
 const countsteps = () => ++steps;
 
@@ -28,6 +29,7 @@ const checkWinner = (selector) => {
       if (cells[item[0]].classList.contains(selector)
         && cells[item[1]].classList.contains(selector)
         && cells[item[2]].classList.contains(selector)) {
+        endGame = true;
         printResult(selector);
       }
     });
@@ -36,7 +38,7 @@ const checkWinner = (selector) => {
 
 const choiceCell = () => {
   const emptyCells = document.querySelectorAll('.empty');
-  if (emptyCells.length !== 0) {
+  if ((!endGame) && (emptyCells.length !== 0)) {
     const randomCell = Math.floor(Math.random() * emptyCells.length);
     emptyCells[randomCell].classList.add('zero');
     emptyCells[randomCell].classList.remove('empty');
@@ -49,8 +51,8 @@ const addCross = (e) => {
     e.target.classList.add('cross');
     e.target.classList.remove('empty');
     countsteps();
-    choiceCell();
     checkWinner('cross');
+    choiceCell();
   }
 };
 
