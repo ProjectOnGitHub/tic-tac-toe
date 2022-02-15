@@ -29,6 +29,9 @@ const checkWinner = (selector) => {
       if (cells[item[0]].classList.contains(selector)
         && cells[item[1]].classList.contains(selector)
         && cells[item[2]].classList.contains(selector)) {
+        cells[item[0]].classList.add('win');
+        cells[item[1]].classList.add('win');
+        cells[item[2]].classList.add('win');
         endGame = true;
         printResult(selector);
       }
@@ -64,6 +67,7 @@ const resetGame = () => {
   document.querySelectorAll('.game__field-cell').forEach((item) => {
     item.classList.remove('cross');
     item.classList.remove('zero');
+    item.classList.remove('win');
     item.classList.add('empty');
     document.querySelector('.game__title').textContent = '';
     document.querySelector('.game__text').textContent = '';
