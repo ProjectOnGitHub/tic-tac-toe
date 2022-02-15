@@ -1,4 +1,5 @@
 const gameField = document.querySelector('.game__field');
+const buttonReset = document.querySelector('.game__button-reset');
 const win = [
   [0, 1, 2],
   [3, 4, 5],
@@ -56,4 +57,18 @@ const addCross = (e) => {
   }
 };
 
+const resetGame = () => {
+  document.querySelectorAll('.game__field-cell').forEach((item) => {
+    item.classList.remove('cross');
+    item.classList.remove('zero');
+    item.classList.add('empty');
+    gameField.addEventListener('click', addCross);
+    document.querySelector('.game__title').textContent = '';
+    document.querySelector('.game__text').textContent = '';
+    steps = 0;
+    endGame = false;
+  });
+};
+
 gameField.addEventListener('click', addCross);
+buttonReset.addEventListener('click', resetGame);
