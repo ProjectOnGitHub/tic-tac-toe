@@ -19,13 +19,14 @@ const countsteps = () => ++steps;
 
 const startGame = () => {
   buttonStart.remove();
-  document.querySelector('.game').classList.add('start');
+  document.querySelector('.game').classList.add('visible');
 };
 
 const printResult = (selector) => {
   const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
   document.querySelector('.game__title').textContent = winner;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
+  buttonReset.classList.add('visible');
 };
 
 const checkWinner = (selector) => {
@@ -47,6 +48,7 @@ const checkWinner = (selector) => {
   if ((steps === 9) && (!endGame)) {
     document.querySelector('.game__title').textContent = 'Ничья';
     document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
+    buttonReset.classList.add('visible');
   }
 };
 
@@ -76,6 +78,7 @@ const resetGame = () => {
     item.classList.remove('zero');
     item.classList.remove('win');
     item.classList.add('empty');
+    buttonReset.classList.remove('visible');
     document.querySelector('.game__title').textContent = '';
     document.querySelector('.game__text').textContent = '';
     steps = 0;
