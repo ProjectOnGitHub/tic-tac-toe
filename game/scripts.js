@@ -32,6 +32,7 @@ const checkWinner = (selector) => {
         cells[item[0]].classList.add('win');
         cells[item[1]].classList.add('win');
         cells[item[2]].classList.add('win');
+        gameField.removeEventListener('click', addCross);
         endGame = true;
         printResult(selector);
       }
@@ -73,6 +74,7 @@ const resetGame = () => {
     document.querySelector('.game__text').textContent = '';
     steps = 0;
     endGame = false;
+    gameField.addEventListener('click', addCross);
   });
 };
 

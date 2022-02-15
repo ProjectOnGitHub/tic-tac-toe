@@ -168,20 +168,17 @@
 }
 
 .cross.win {
-  background-color: rgb(0, 255, 21, 0.5);
+  background-color: rgb(0, 255, 21, 0.3);
   animation: displayImage 1s forwards;
 
   opacity: 0;
 }
 
 .zero.win {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.3);
   animation: displayImage 1s forwards;
 
   opacity: 0;
-}
-
-.quotes__image.animation {
 }
 
 @keyframes displayImage {
