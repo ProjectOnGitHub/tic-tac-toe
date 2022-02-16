@@ -39,6 +39,8 @@
 }
 
 .button {
+  border-radius: 2px;
+  border: 2px solid var(--color-gray);
   align-content: center;
   background: transparent;
   cursor: pointer;
@@ -72,7 +74,7 @@
   width: 100%;
   display: none;
   justify-items: center;
-  grid-template-rows: repeat(3, min-content) 1fr;
+  grid-template-rows: repeat(3, min-content) 1fr 1fr;
   gap: 15px;
   opacity: 0;
 }
@@ -110,6 +112,7 @@
 }
 
 .game__button-start {
+  border: none;
   font-size: 50px;
   background: transparent;
   border: none;
@@ -126,8 +129,6 @@
 }
 
 .game__button-reset {
-  border-radius: 2px;
-  border: 2px solid var(--color-gray);
   display: none;
   opacity: 0;
   font-size: 18px;
@@ -239,4 +240,74 @@
 .empty:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.popup {
+  position: fixed;
+  display: none;
+  grid-template-rows: repeat(3, max-content);
+  align-content: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  animation: displayContent 1s forwards;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s ease-in-out;
+}
+
+.popup__container {
+  display: grid;
+  gap: 15px;
+  border-radius: 3px;
+  padding: 15px;
+  background: var(--color-light);
+  justify-items: center;
+}
+
+.popup_open {
+  display: grid;
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__button-open {
+  font-size: 18px;
+  height: 40px;
+  width: 200px;
+}
+
+.popup__button-close {
+  width: 30px;
+  height: 30px;
+  justify-self: right;
+}
+
+.popup__title {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.table {
+  font-size: 14px;
+  margin: 0;
+  padding: 0 15px;
+}
+.table__body {
+  display: grid;
+  gap: 5px;
+}
+.table__row {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 10px 0;
+}
+
+.table__header {
+  font-weight: normal;
 }

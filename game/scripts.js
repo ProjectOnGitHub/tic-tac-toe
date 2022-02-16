@@ -1,6 +1,11 @@
 const buttonReset = document.querySelector('.game__button-reset');
 const gameField = document.querySelector('.game__field');
 const buttonStart = document.querySelector('.game__button-start');
+const popup = document.querySelector('.popup');
+const tableBody = document.querySelector('.table__body');
+
+const popupButtonOpen = document.querySelector('.popup__button-open');
+const popupButtonClose = document.querySelector('.popup__button-close');
 const win = [
   [0, 1, 2],
   [3, 4, 5],
@@ -21,6 +26,23 @@ const startGame = () => {
   buttonStart.remove();
   document.querySelector('.game').classList.add('visible');
 };
+
+const render = (renderElement, i) => {
+  const arr = JSON.parse(localStorage.getItem('allResults'));
+  return arr.forEach(renderElement, i);
+};
+
+const renderButton = (renderElement, i) => {
+  console.log(renderElement, i);
+  const tableTemplate = document.querySelector('.table__template').content;
+  const newRow = tableTemplate.cloneNode(true);
+  newRow.querySelector('.table__data:nth-child(1)').textContent = ++i;
+  newRow.querySelector('.table__data:nth-child(2)').textContent = renderElement.winner;
+  newRow.querySelector('.table__data:nth-child(3)').textContent = renderElement.steps;
+  tableBody.append(newRow);
+};
+
+render(renderButton);
 
 function setLocalStorage(...obj) {
   let savedResults = JSON.parse(localStorage.getItem('allResults'));
@@ -85,6 +107,7 @@ const choiceCell = () => {
     checkWinner('zero');
   }
 };
+
 const addCross = (e) => {
   if ((e.target.classList.contains('game__field-cell')) && (steps % 2 === 0)) {
     e.target.classList.add('cross');
@@ -110,6 +133,16 @@ const resetGame = () => {
   });
 };
 
+const openPopup = () => {
+  popup.classList.add('popup_open');
+};
+
+const closePopup = () => {
+  popup.classList.remove('popup_open');
+};
+
 buttonReset.addEventListener('click', resetGame);
 buttonStart.addEventListener('click', startGame);
 gameField.addEventListener('click', addCross);
+popupButtonOpen.addEventListener('click', openPopup);
+popupButtonClose.addEventListener('click', closePopup);
