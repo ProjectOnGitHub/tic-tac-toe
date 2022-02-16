@@ -22,6 +22,25 @@ const startGame = () => {
   document.querySelector('.game').classList.add('visible');
 };
 
+function setLocalStorage(...obj) {
+  let savedResults = JSON.parse(localStorage.getItem('allResults'));
+  if (savedResults === null) savedResults = [];
+
+  if (savedResults.length === 10) {
+    savedResults.unshift({
+      winner: obj[0],
+      steps: obj[1],
+    });
+    savedResults.pop();
+  } else {
+    savedResults.unshift({
+      winner: obj[0],
+      steps: obj[1],
+    });
+  }
+  localStorage.setItem('allResults', JSON.stringify(savedResults));
+}
+
 const printResult = (selector) => {
   const emptyCells = document.querySelectorAll('.empty');
   emptyCells.forEach((item) => item.classList.remove('empty'));
@@ -29,6 +48,7 @@ const printResult = (selector) => {
   document.querySelector('.game__title').textContent = winner;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
   buttonReset.classList.add('visible');
+  setLocalStorage(selector, steps);
 };
 
 const checkWinner = (selector) => {
@@ -51,6 +71,7 @@ const checkWinner = (selector) => {
     document.querySelector('.game__title').textContent = 'Ничья';
     document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
     buttonReset.classList.add('visible');
+    setLocalStorage('drawn', steps);
   }
 };
 
