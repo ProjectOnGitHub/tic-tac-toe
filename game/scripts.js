@@ -32,19 +32,7 @@ const render = (renderElement, i) => {
   return arr.forEach(renderElement, i);
 };
 
-const renderButton = (renderElement, i) => {
-  console.log(renderElement, i);
-  const tableTemplate = document.querySelector('.table__template').content;
-  const newRow = tableTemplate.cloneNode(true);
-  newRow.querySelector('.table__data:nth-child(1)').textContent = ++i;
-  newRow.querySelector('.table__data:nth-child(2)').textContent = renderElement.winner;
-  newRow.querySelector('.table__data:nth-child(3)').textContent = renderElement.steps;
-  tableBody.append(newRow);
-};
-
-render(renderButton);
-
-function setLocalStorage(...obj) {
+const setLocalStorage = (...obj) => {
   let savedResults = JSON.parse(localStorage.getItem('allResults'));
   if (savedResults === null) savedResults = [];
 
@@ -61,16 +49,28 @@ function setLocalStorage(...obj) {
     });
   }
   localStorage.setItem('allResults', JSON.stringify(savedResults));
-}
+};
+
+const renderButton = (renderElement, i) => {
+  const tableTemplate = document.querySelector('.table__template').content;
+  const newRow = tableTemplate.cloneNode(true);
+  newRow.querySelector('.table__data:nth-child(1)').textContent = ++i;
+  newRow.querySelector('.table__data:nth-child(2)').textContent = renderElement.winner;
+  newRow.querySelector('.table__data:nth-child(3)').textContent = renderElement.steps;
+  tableBody.append(newRow);
+};
+
+render(renderButton);
 
 const printResult = (selector) => {
   const emptyCells = document.querySelectorAll('.empty');
   emptyCells.forEach((item) => item.classList.remove('empty'));
-  const winner = (selector === 'cross') ? 'Крестик выиграл' : 'Нолик выиграл';
-  document.querySelector('.game__title').textContent = winner;
+  const winner = (selector === 'cross') ? 'Крестик' : 'Нолик';
+  document.querySelector('.game__title').textContent = `${winner} выиграл`;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
   buttonReset.classList.add('visible');
-  setLocalStorage(selector, steps);
+
+  setLocalStorage(winner, steps);
 };
 
 const checkWinner = (selector) => {
@@ -93,7 +93,7 @@ const checkWinner = (selector) => {
     document.querySelector('.game__title').textContent = 'Ничья';
     document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
     buttonReset.classList.add('visible');
-    setLocalStorage('drawn', steps);
+    setLocalStorage('Ничья', steps);
   }
 };
 
@@ -125,12 +125,12 @@ const resetGame = () => {
     item.classList.remove('win');
     item.classList.add('empty');
     buttonReset.classList.remove('visible');
-    document.querySelector('.game__title').textContent = '';
-    document.querySelector('.game__text').textContent = '';
-    steps = 0;
-    endGame = false;
-    gameField.addEventListener('click', addCross);
   });
+  document.querySelector('.game__title').textContent = '';
+  document.querySelector('.game__text').textContent = '';
+  steps = 0;
+  endGame = false;
+  gameField.addEventListener('click', addCross);
 };
 
 const openPopup = () => {
