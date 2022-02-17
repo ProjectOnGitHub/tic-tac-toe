@@ -27,11 +27,6 @@ const startGame = () => {
   document.querySelector('.game').classList.add('visible');
 };
 
-const render = (renderElement, i) => {
-  const arr = JSON.parse(localStorage.getItem('allResults'));
-  if (arr !== null) arr.forEach(renderElement, i);
-};
-
 const setLocalStorage = (...obj) => {
   let savedResults = JSON.parse(localStorage.getItem('allResults'));
   if (savedResults === null) savedResults = [];
@@ -51,16 +46,26 @@ const setLocalStorage = (...obj) => {
   localStorage.setItem('allResults', JSON.stringify(savedResults));
 };
 
-const renderButton = (renderElement, i) => {
+const createRow = (renderElement, i) => {
   const tableTemplate = document.querySelector('.table__template').content;
-  const newRow = tableTemplate.cloneNode(true);
-  newRow.querySelector('.table__data:nth-child(1)').textContent = ++i;
-  newRow.querySelector('.table__data:nth-child(2)').textContent = renderElement.winner;
-  newRow.querySelector('.table__data:nth-child(3)').textContent = renderElement.steps;
-  tableBody.append(newRow);
+  const row = tableTemplate.cloneNode(true);
+  row.querySelector('.table__data:nth-child(1)').textContent = ++i;
+  row.querySelector('.table__data:nth-child(2)').textContent = renderElement.winner;
+  row.querySelector('.table__data:nth-child(3)').textContent = renderElement.steps;
+  return row;
 };
 
-render(renderButton);
+const renderRow = (renderElement, i) => {
+  const row = createRow(renderElement, i);
+  tableBody.appendChild(row);
+};
+
+const render = () => {
+  const arr = JSON.parse(localStorage.getItem('allResults'));
+  if (arr !== null) arr.forEach(renderRow);
+};
+
+render();
 
 const printResult = (selector) => {
   const emptyCells = document.querySelectorAll('.empty');
@@ -69,7 +74,6 @@ const printResult = (selector) => {
   document.querySelector('.game__title').textContent = `${winner} выиграл`;
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
   buttonReset.classList.add('visible');
-
   setLocalStorage(winner, steps);
 };
 
