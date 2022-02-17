@@ -29,7 +29,7 @@ const startGame = () => {
 
 const render = (renderElement, i) => {
   const arr = JSON.parse(localStorage.getItem('allResults'));
-  return arr.forEach(renderElement, i);
+  if (arr !== null) arr.forEach(renderElement, i);
 };
 
 const setLocalStorage = (...obj) => {
