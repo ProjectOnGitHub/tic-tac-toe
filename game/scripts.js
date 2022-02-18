@@ -67,6 +67,12 @@ const render = () => {
 
 render();
 
+const replaceResults = () => {
+  const tableRowData = document.querySelectorAll('.table__row_data');
+  tableRowData.forEach((item) => item.remove());
+  render();
+};
+
 const printResult = (selector) => {
   const emptyCells = document.querySelectorAll('.empty');
   emptyCells.forEach((item) => item.classList.remove('empty'));
@@ -75,6 +81,7 @@ const printResult = (selector) => {
   document.querySelector('.game__text').textContent = `Всего ходов: ${steps}`;
   buttonReset.classList.add('visible');
   setLocalStorage(winner, steps);
+  replaceResults();
 };
 
 const checkWinner = (selector) => {
