@@ -12,9 +12,10 @@
   background-color: var(--color-light);
 
   font: normal 20px/1.5 "Inter", Arial, sans-serif;
-  --color-gray: #c2c2c2;
+
   --color-dark: #323131;
-  --color-light: #ffffff;
+  --color-gray: #c2c2c2;
+  --color-light: #fff;
   -webkit-font-smoothing: antialiased;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr min-content;
@@ -24,6 +25,7 @@
 
 .common-width {
   display: grid;
+
   box-sizing: border-box;
   width: 100%;
   max-width: var(--main-width);
@@ -38,103 +40,134 @@
   color: var(--color-dark);
 }
 
+.link:hover {
+  opacity: 0.7;
+}
+
 .button {
-  border-radius: 2px;
-  border: 2px solid var(--color-gray);
   align-content: center;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
+
   margin: 0;
+  padding: 0;
+
+  cursor: pointer;
   transition: 0.3s ease-in-out;
+
+  border: 2px solid var(--color-gray);
+  border-radius: 2px;
+  background: transparent;
 }
 
 .button:hover {
   transform: scale(1.1);
 }
+
 .header {
-  justify-items: center;
   align-items: center;
+
   height: 60px;
+
+  justify-items: center;
 }
 
 .header__title {
-  font-size: 30px;
   margin: 0;
+
+  font-size: 30px;
   font-weight: normal;
 }
 
 .main {
+  justify-content: center;
+
   height: calc(100vh - 120px);
   padding: 50px 0;
-  justify-content: center;
 }
 
 .game {
-  width: 100%;
   display: none;
-  justify-items: center;
-  grid-template-rows: repeat(3, min-content) 1fr 1fr;
-  gap: 15px;
+
+  width: 100%;
+
   opacity: 0;
+
+  gap: 15px;
+  grid-template-rows: repeat(3, min-content) 1fr 1fr;
+  justify-items: center;
 }
 
 .game__field {
   display: grid;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  gap: 5px;
   grid-template-columns: repeat(3, 70px);
   grid-template-rows: repeat(3, 70px);
-  gap: 5px;
-  padding: 0;
-  list-style: none;
-  margin: 0;
 }
 
 .game__field-cell {
-  display: grid;
   position: relative;
+
+  display: grid;
+  align-items: center;
+
+  transition: 0.3s ease-in-out;
+
   border: 1px solid var(--color-gray);
   border-radius: 3px;
+
   justify-items: center;
-  align-items: center;
-  transition: 0.3s ease-in-out;
 }
 
 .game__title {
+  margin: 0;
+
   font-size: 24px;
   font-weight: normal;
-  margin: 0;
 }
 
 .game__text {
-  font-size: 20px;
-  padding: 0;
   margin: 0;
+  padding: 0;
+
+  font-size: 20px;
 }
 
 .game__button-start {
-  border: none;
-  font-size: 50px;
-  background: transparent;
-  border: none;
+  align-self: center;
+
   width: 300px;
   height: 60px;
-  align-self: center;
+
+  border: none;
+  border: none;
+  background: transparent;
+
+  font-size: 50px;
 }
 
 @media screen and (max-width: 480px) {
   .game__button-start {
-    font-size: 40px;
     width: 250px;
+
+    font-size: 40px;
   }
 }
 
 .game__button-reset {
   display: none;
-  opacity: 0;
-  font-size: 18px;
   align-self: end;
-  height: 40px;
+
   width: 200px;
+  height: 40px;
+
+  opacity: 0;
+
+  font-size: 18px;
 }
 
 .footer {
@@ -178,10 +211,13 @@
 
 .cross:before,
 .cross:after {
-  content: "";
   position: absolute;
+
   width: 100%;
   height: 2px;
+
+  content: "";
+
   background: var(--color-dark);
 }
 
@@ -201,12 +237,15 @@
 
 .zero:before,
 .zero:after {
-  content: "";
   position: absolute;
+
   width: 80%;
   height: 80%;
-  border-radius: 50%;
+
+  content: "";
+
   border: 2px solid var(--color-dark);
+  border-radius: 50%;
   background: transparent;
 }
 
@@ -215,8 +254,9 @@
 }
 
 .visible {
-  animation: displayContent 1s forwards;
   display: grid;
+
+  animation: displayContent 1s forwards;
 }
 
 .zero.win {
@@ -225,6 +265,7 @@
 
 .win {
   animation: displayContent 1s forwards;
+
   opacity: 0;
 }
 
@@ -244,68 +285,86 @@
 
 .popup {
   position: fixed;
+  z-index: 2;
+
   display: none;
-  grid-template-rows: repeat(3, max-content);
+  visibility: hidden;
   align-content: center;
   justify-content: center;
+
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  animation: displayContent 1s forwards;
-  visibility: hidden;
-  opacity: 0;
+
   transition: visibility 0.5s, opacity 0.5s ease-in-out;
+  animation: displayContent 1s forwards;
+
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  grid-template-rows: repeat(3, max-content);
 }
 
 .popup__container {
   display: grid;
-  gap: 15px;
-  border-radius: 3px;
+
   padding: 15px;
+
+  border-radius: 3px;
   background: var(--color-light);
+
+  gap: 15px;
   justify-items: center;
 }
 
 .popup_open {
   display: grid;
   visibility: visible;
+
   opacity: 1;
 }
 
 .popup__button-open {
-  font-size: 18px;
-  height: 40px;
   width: 200px;
+  height: 40px;
+
+  font-size: 18px;
 }
 
 .popup__button-close {
   width: 30px;
   height: 30px;
+
   justify-self: right;
 }
 
 .popup__title {
+  margin: 0;
+
   font-size: 24px;
   font-weight: normal;
-  margin: 0;
 }
 
 .table {
-  font-size: 14px;
   margin: 0;
   padding: 0 15px;
+
+  font-size: 14px;
 }
+
 .table__body {
   display: grid;
+
   gap: 5px;
 }
+
 .table__row {
-  box-sizing: border-box;
   display: grid;
+
+  box-sizing: border-box;
+
+  gap: 10px 0;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  gap: 10px 0;
 }
 
 .table__header {
