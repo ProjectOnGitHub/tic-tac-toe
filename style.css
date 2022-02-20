@@ -172,11 +172,11 @@
 
 .footer {
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
 
   height: 60px;
 
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: 1fr;
 }
 
 @media screen and (max-width: 480px) {
@@ -198,11 +198,6 @@
 
 .footer__link:hover {
   text-decoration: underline;
-}
-
-.footer__logo {
-  width: 80px;
-  height: auto;
 }
 
 .cross {
