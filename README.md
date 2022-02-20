@@ -1,2 +1,3 @@
-# projectongithub-JSFEPRESCHOOL
-Private repository for @projectongithub
+# Крестики-нолики
+
+[Сайт](https://projectongithub.github.io/tic-tac-toe/)
