@@ -1,3 +1,5 @@
+import './styles/index.css';
+
 const buttonReset = document.querySelector('.game__button-reset');
 const gameField = document.querySelector('.game__field');
 const buttonStart = document.querySelector('.game__button-start');

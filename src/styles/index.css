@@ -1,5 +1,5 @@
-@import url("./assets/normalize.css");
-@import url("./assets/fonts.css");
+@import url("../../assets/normalize.css");
+@import url("../../assets/fonts.css");
 
 .root {
   display: grid;
@@ -355,7 +355,7 @@
   height: 20px;
 
   border: none;
-  background: url("./assets/svg/button-close.svg");
+  background: url("../../assets/svg/button-close.svg");
   background-position: center center;
 
   justify-self: right;
