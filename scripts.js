@@ -67,6 +67,14 @@ const render = () => {
 
 render();
 
+const changeTitle = () => {
+  const results = JSON.parse(localStorage.getItem('allResults'));
+  const title = document.querySelector('.popup__title');
+  results === null
+    ? title.textContent = 'Игры еще не было'
+    : title.textContent = 'Результаты';
+};
+
 const replaceResults = () => {
   const tableRowData = document.querySelectorAll('.table__row_data');
   tableRowData.forEach((item) => item.remove());
@@ -85,8 +93,9 @@ const printResult = (selector) => {
 };
 
 const checkWinner = (selector) => {
+  const cells = document.querySelectorAll('.game__field-cell');
+
   if (steps > 4) {
-    const cells = document.querySelectorAll('.game__field-cell');
     win.map((item) => {
       if (cells[item[0]].classList.contains(selector)
         && cells[item[1]].classList.contains(selector)
@@ -108,7 +117,7 @@ const checkWinner = (selector) => {
   }
 };
 
-const choiceCell = () => {
+const addZero = () => {
   const emptyCells = document.querySelectorAll('.empty');
   if ((!endGame) && (emptyCells.length !== 0)) {
     const randomCell = Math.floor(Math.random() * emptyCells.length);
@@ -125,7 +134,7 @@ const addCross = (e) => {
     e.target.classList.remove('empty');
     countsteps();
     checkWinner('cross');
-    choiceCell();
+    setTimeout(() => addZero(), 50);
   }
 };
 
@@ -145,6 +154,7 @@ const resetGame = () => {
 };
 
 const openPopup = () => {
+  changeTitle();
   popup.classList.add('popup_open');
 };
 
