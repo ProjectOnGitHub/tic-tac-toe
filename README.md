@@ -1,5 +1,7 @@
 # Крестики-нолики
 
+Игра в крестики-нолики на HTML, CSS и Javascript. Сборка на Webpack.
+
 [Сайт](https://projectongithub.github.io/tic-tac-toe/)
 
 ### Запуск проекта локально
